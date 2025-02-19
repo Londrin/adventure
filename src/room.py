@@ -1,5 +1,5 @@
 from objectlist import ObjectList
-from objectholder import ObjectHolder
+from src.objectholder import ObjectHolder
 
 class Room(ObjectHolder):
     def __init__(self, name, description, exits=None, lst:ObjectList=None):

@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from constants import RM
+from constants.constants import RM
 
-from room import Room
-from actor import Actor
+from src.room import Room
+from src.actor import Actor
 from objectlist import ObjectList
-from object import Object
+from src.object import Object
 
 class Game(ttk.Frame):    
     from parser import parse_command, run_command

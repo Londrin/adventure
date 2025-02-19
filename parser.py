@@ -1,5 +1,5 @@
 import tkinter as tk
-from constants import Direction
+from constants.constants import Direction
 
 def parse_command(self, user_input):
     commands = ["n", "north", "northwest", "northeast", "e", "east", "southeast", "south", "s", "southwest", "west", "w", "look", "nw", "ne", "se", "sw"]

@@ -1,6 +1,6 @@
-from room import Room
-from object import Object
-from objectholder import ObjectHolder
+from src.room import Room
+from src.object import Object
+from src.objectholder import ObjectHolder
 from objectlist import ObjectList
 
 class Actor(ObjectHolder):

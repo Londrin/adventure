@@ -1,4 +1,4 @@
-from baseobject import BaseObject
+from src.baseobject import BaseObject
 
 class Object(BaseObject):
     def __init__(self, name, description, _cantake=True):

@@ -1,4 +1,4 @@
-from object import Object
+from src.object import Object
 
 class ObjectList(list):
     def __init__(self, *args):

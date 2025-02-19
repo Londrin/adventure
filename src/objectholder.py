@@ -1,4 +1,4 @@
-from object import Object
+from src.object import Object
 from objectlist import ObjectList
 
 class ObjectHolder(Object):
