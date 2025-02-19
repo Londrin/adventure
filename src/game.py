@@ -4,11 +4,12 @@ from constants.constants import RM
 
 from src.room import Room
 from src.actor import Actor
-from objectlist import ObjectList
+from src.objectlist import ObjectList
 from src.object import Object
 
 class Game(ttk.Frame):    
-    from parser import parse_command, run_command
+    from parser import parse_command, execute_command, init_possible_inputs, issue_command, issue_verb, issue_verb_noun
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -24,7 +25,7 @@ class Game(ttk.Frame):
         self.ys.grid(row=0, column=1, sticky='nwes')
 
         self.input_field = tk.Entry(self)
-        self.input_field.bind("<Return>", self.run_command)
+        self.input_field.bind("<Return>", self.execute_command)
         self.input_field.grid(row=1, column=0, sticky='we', padx=2, pady=2)
 
         self.input_field.focus()
@@ -32,6 +33,9 @@ class Game(ttk.Frame):
         self.text_area.config(state="disabled")
         self._player:Actor
 
+        self.possible_inputs = {}
+
+        self.init_possible_inputs()
         self.initialize_game()
         self.start_game()        
 
@@ -58,7 +62,7 @@ class Game(ttk.Frame):
     
     def update_display(self, message):
         self.text_area.config(state="normal")
-        self.text_area.insert(tk.END, message)
+        self.text_area.insert(tk.END, message + "\n\n")
         self.text_area.see(tk.END)
         self.text_area.config(state="disabled")      
 
@@ -67,7 +71,35 @@ class Game(ttk.Frame):
             self._player.room = self.world[self._player.room.get_lst_exits()[direction]]
             return self.look()
         else:
-            return f"{direction.capitalize()} is not a valid exit.\n\n"
+            return f"{direction.capitalize()} is not a valid exit."
 
     def look(self):
         return self._player.room.describe()
+    
+    def take_object(self, object):
+        output = ""
+        obj:Object = self._player.room.get_objects().get_object(object)
+        if obj == None:
+            output = f"There is no {object} here."
+        else:
+            self.change_object(obj, self._player.room.get_objects(), self._player.get_objects())
+            output = f"{obj.get_name()} was taken"
+        
+        return output
+
+    def drop_object(self, object):
+        output = ""
+        obj:Object = self._player.get_objects().get_object(object)
+        if obj == None:
+            output = f"You don't have this item."
+        else:
+            self.change_object(obj, self._player.get_objects(), self._player.room.get_objects())
+            output = f"{obj.get_name()} was dropped."
+        
+        return output
+
+
+    def change_object(self, object, from_object_holder:list, to_object_holder:list):
+        from_object_holder.remove(object)
+        to_object_holder.append(object)
+

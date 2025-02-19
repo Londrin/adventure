@@ -1,5 +1,5 @@
 from src.object import Object
-from objectlist import ObjectList
+from src.objectlist import ObjectList
 
 class ObjectHolder(Object):
     def __init__(self, name, description, _cantake=True, object_list:ObjectList=[]):

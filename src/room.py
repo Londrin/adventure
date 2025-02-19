@@ -1,4 +1,4 @@
-from objectlist import ObjectList
+from src.objectlist import ObjectList
 from src.objectholder import ObjectHolder
 
 class Room(ObjectHolder):
@@ -28,8 +28,8 @@ class Room(ObjectHolder):
 
     def describe(self):
         if not self.lst.describe() == "":
-            return f"{self.get_name()}\n{self.get_description()}\nAlso, you can see: {self.lst.describe()}\n{self.get_exits()}\n\n"
+            return f"{self.get_name()}\n{self.get_description()}\nAlso, you can see: {self.lst.describe()}\n{self.get_exits()}"
         else:
-            return f"{self.get_name()}\n{self.get_description()}\n{self.get_exits()}\n\n"
+            return f"{self.get_name()}\n{self.get_description()}\n{self.get_exits()}"
 
     

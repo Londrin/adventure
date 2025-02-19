@@ -15,3 +15,9 @@ class Direction(Enum):
     West = "west"
     Northwest = "northwest"
 
+
+class CT(Enum):
+    VERB = "verb"
+    NOUN = "noun"
+    ARTICLE = "article"
+    UNKNOWN = "unknown"
